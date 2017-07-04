@@ -1,0 +1,29 @@
+<!--The whole content below can be removed with the new code.-->
+<div style="text-align:center">
+<input type="button" value="Create Mode" (click)="createUserWindow()"/>
+<input type="button" value="Get Help"/>
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+
+<div *ngFor="let user of users">
+  <agm-marker [latitude]="user.loc.coordinates[0]" [longitude]="user.loc.coordinates[1]" [label]="user.name">
+           <agm-info-window [disableAutoPan]="true">
+             <div>{{user.name}}</div>
+             <div>{{user.phone}}</div>
+             <div>{{user.description}}</div>
+           </agm-info-window>
+         </agm-marker>
+</div>
+  <agm-marker *ngIf = "showCreateuser" [latitude]="createUserPosLat" [longitude]="createUserPosLng" [label]="'Create'">
+         <agm-info-window [disableAutoPan]="true" [isOpen]="true">
+           <input type="text" [(ngModel)] ="newUser.name" placeholder="Name">
+           <input type="text" [(ngModel)] = "newUser.phone" placeholder="Phone">
+           <textarea [(ngModel)] = "newUser.description" placeholder="description">  </textarea >
+           <input type="button" (click)="createUser()" value="Create">
+         </agm-info-window>
+       </agm-marker>
+
+</agm-map>
+ <h2>Here are some links to help you start: </h2>
+<ul >
+  <li ></li>
+</ul>
