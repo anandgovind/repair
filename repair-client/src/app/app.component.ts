@@ -33,9 +33,8 @@ constructor(getUserService:GetUserService){
     this.zoom = 16;
     }.bind(this));
     this.creteUserService = getUserService;
-    getUserService.getUsers(this.lat,this.lng).subscribe(users => this.users = users,
-                     error =>  this.errorMessage = <any>error);
-}
+    //  this.getUsers();
+    }
 //Function to create User window
 createUserWindow = () => {
 navigator.geolocation.getCurrentPosition(function(pos){
@@ -51,9 +50,16 @@ this.newUser.longitude = this.createUserPosLng;
 console.log(this.newUser);
 this.creteUserService.createUsers(this.newUser).subscribe(users => this.users = users,
                  error =>  this.errorMessage = <any>error);
-
-
+}
+updateMarkerPosition(event){
+this.createUserPosLat = event.coords.lat;
+this.createUserPosLng = event.coords.lng;
 }
 
+getUsers(){
+this.creteUserService.getUsers(this.lat,this.lng).subscribe(users => this.users = users,
+                 error =>  this.errorMessage = <any>error);
+
+}
 
 }

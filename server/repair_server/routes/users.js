@@ -35,10 +35,6 @@ var User = require('../data/users');
          console.log();
          res.send(items);
        });
-
-
-
-
     }else {
       res.send('Error');
     }

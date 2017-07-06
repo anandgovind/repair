@@ -1,7 +1,7 @@
 <!--The whole content below can be removed with the new code.-->
 <div style="text-align:center">
 <input type="button" value="Create Mode" (click)="createUserWindow()"/>
-<input type="button" value="Get Help"/>
+<input type="button" value="Get Help" (click)="getUsers();"/>
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
 
 <div *ngFor="let user of users">
@@ -13,12 +13,13 @@
            </agm-info-window>
          </agm-marker>
 </div>
-  <agm-marker *ngIf = "showCreateuser" [latitude]="createUserPosLat" [longitude]="createUserPosLng" [label]="'Create'">
+  <agm-marker (dragEnd)="updateMarkerPosition($event)" [markerDraggable]="true" *ngIf = "showCreateuser" [latitude]="createUserPosLat" [longitude]="createUserPosLng" [label]="'Create'">
          <agm-info-window [disableAutoPan]="true" [isOpen]="true">
            <input type="text" [(ngModel)] ="newUser.name" placeholder="Name">
            <input type="text" [(ngModel)] = "newUser.phone" placeholder="Phone">
            <textarea [(ngModel)] = "newUser.description" placeholder="description">  </textarea >
            <input type="button" (click)="createUser()" value="Create">
+           {{createUserPosLat}}
          </agm-info-window>
        </agm-marker>
 
