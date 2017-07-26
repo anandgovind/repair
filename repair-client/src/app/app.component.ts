@@ -27,6 +27,7 @@ latitude:null,longitude:null,name:null,description:null,phone:null
 }
 creteUserService = null
 constructor(getUserService:GetUserService){
+
     navigator.geolocation.getCurrentPosition(function(pos){
     this.lat = pos.coords.latitude;
     this.lng = pos.coords.longitude;
@@ -37,6 +38,7 @@ constructor(getUserService:GetUserService){
     }
 //Function to create User window
 createUserWindow = () => {
+console.log(this.agm);
 navigator.geolocation.getCurrentPosition(function(pos){
 this.createUserPosLat = pos.coords.latitude;
 this.createUserPosLng = pos.coords.longitude;
